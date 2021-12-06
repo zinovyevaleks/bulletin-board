@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12>
+      <v-flex xs12 sm6>
         <h1 class="mb-3">Create new ad</h1>
         <v-form class="mb-3" ref="form" v-model="valid" validation>
           <v-text-field
