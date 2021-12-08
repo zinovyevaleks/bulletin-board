@@ -5,12 +5,12 @@
        <v-card>
          <v-card-media
            height="300px"
-           src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+           :src="ad.imageSrc"
          >
          </v-card-media>
          <v-card-text>
-           <h1>Lorem, ipsum.</h1>
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, provident dicta maxime voluptatibus dolore quo at vel ullam, suscipit voluptatem, consequuntur consequatur sequi. Adipisci rerum velit consequuntur cumque sit dolor?</p>
+           <h1>{{ad.title}}</h1>
+           <p>{{ad.description}}</p>
          </v-card-text>
          <v-card-actions>
            <v-spacer></v-spacer>
@@ -25,8 +25,12 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
+  props: ['id'],
+computed: {
+  ad () {
+    const id = this.id
+    return this.$store.getters.adById(id)
+  }
+}
 };
 </script>

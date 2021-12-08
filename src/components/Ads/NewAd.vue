@@ -68,9 +68,10 @@ export default {
           title: this.title,
           description: this.description,
           promo: this.promo,
+          imageSrc: 'https://sm.ign.com/ign_ru/screenshot/default/cyberpunk-2077_gjz1.png'
         }
 
-        console.log(ad);
+        this.$store.dispatch('createdAd', ad)
       }
     },
   },
