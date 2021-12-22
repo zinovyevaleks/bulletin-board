@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
 class User {
@@ -23,6 +23,20 @@ export default {
       const auth = getAuth();
       try {
         const user = await createUserWithEmailAndPassword(auth, email, password)  
+        commit('setUser', new User(user.uid))
+        commit('setLoading', false)    
+      } catch(error) {
+        commit('setLoading', false),
+        commit('setError', error.message)
+        throw error
+      }
+    },
+    async loginUser ({commit}, {email, password}) {
+      commit('clearError')
+      commit('setLoading', true)
+      const auth = getAuth();
+      try {
+        const user = await signInWithEmailAndPassword(auth, email, password)  
         commit('setUser', new User(user.uid))
         commit('setLoading', false)    
       } catch(error) {
